@@ -1,3 +1,6 @@
+document.addEventListener('DOMContentLoaded', () => {
+
+let phiChart;
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -159,15 +162,19 @@ async function displayPhiValues() {
 }
 
 function createChart(phiData) {
-  const ctx = phiChartElement.getContext('2d');
+  const ctx = phiChartElement.getContext("2d");
 
-  const labels = phiData.map(data => data.timestamp);
-  const dataPoints = phiData.map(data => data.phi);
+  if (phiChart) {
+    phiChart.destroy();
+  }
+
+  const labels = phiData.map((data) => data.timestamp);
+  const dataPoints = phiData.map((data) => data.phi);
 
   // Register the date-fns adapter
   Chart.register(Chart.adapters.date);
-  
-  const chart = new Chart(ctx, {
+
+  phiChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: labels,
@@ -206,30 +213,6 @@ function createChart(phiData) {
     }
   });
 
-  phiChartElement.style.display = 'block';
+  phiChartElement.style.display = "block";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+})
