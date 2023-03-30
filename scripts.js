@@ -1,3 +1,4 @@
+import ChartjsAdapterDateFns from 'chartjs-adapter-date-fns';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -159,6 +160,8 @@ async function displayPhiValues() {
 }
 
 function createChart(phiData) {
+  Chart.register(ChartjsAdapterDateFns);
+
   const ctx = phiChartElement.getContext('2d');
   
   const labels = phiData.map(data => data.timestamp);
