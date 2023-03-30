@@ -1,3 +1,57 @@
+import {registerables} from 'chart.js';
+Chart.register(...registerables);
+
+Chart.defaults.adapters.date = {
+  date: function (value) {
+    return value instanceof Date ? value : new Date(value);
+  },
+  format: function (time, format) {
+    return time.toLocaleString();
+  },
+  add: function (time, amount, unit) {
+    time = new Date(time);
+    switch (unit) {
+      case 'millisecond':
+        time.setMilliseconds(time.getMilliseconds() + amount);
+        break;
+      case 'second':
+        time.setSeconds(time.getSeconds() + amount);
+        break;
+      case 'minute':
+        time.setMinutes(time.getMinutes() + amount);
+        break;
+      case 'hour':
+        time.setHours(time.getHours() + amount);
+        break;
+      case 'day':
+        time.setDate(time.getDate() + amount);
+        break;
+      case 'week':
+        time.setDate(time.getDate() + amount * 7);
+        break;
+      case 'month':
+        time.setMonth(time.getMonth() + amount);
+        break;
+      case 'quarter':
+        time.setMonth(time.getMonth() + amount * 3);
+        break;
+      case 'year':
+        time.setFullYear(time.getFullYear() + amount);
+        break;
+    }
+    return time;
+  },
+  diff: function (a, b, unit) {
+    // ... implement the diff function ...
+  },
+  startOf: function (time, unit) {
+    // ... implement the startOf function ...
+  },
+  endOf: function (time, unit) {
+    // ... implement the endOf function ...
+  },
+};
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCaewNUV7i50S4DYMVgzBLVg2Rc8dJpmLk",
