@@ -141,10 +141,14 @@ async function displayPhiValues() {
       .orderBy('timestamp', 'asc')
       .get();
       
-    const phiData = phiValuesSnapshot.docs.map(doc => ({
-      phi: doc.data().phi,
-      timestamp: doc.data().timestamp.toDate(),
-    }));
+      const phiData = phiValuesSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+          phi: data.phi,
+          timestamp: data.timestamp.toDate(),
+        };
+      });
+      
     
     createChart(phiData);
   } catch (error) {
