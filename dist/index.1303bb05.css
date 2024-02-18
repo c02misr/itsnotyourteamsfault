@@ -1,0 +1,55 @@
+body {
+  color: #fff;
+  background-color: #000;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+.description {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  flex-direction: column;
+  gap: 10px;
+  display: flex;
+}
+
+button {
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  margin: 4px 2px;
+  padding: 10px;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover {
+  background-color: #0069d9;
+}
+
+.top-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.auth-buttons {
+  gap: 10px;
+  display: flex;
+}
+
+/*# sourceMappingURL=index.1303bb05.css.map */
