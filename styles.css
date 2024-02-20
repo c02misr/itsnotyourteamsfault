@@ -60,3 +60,9 @@ button:hover {
   position: relative; /* Needed for absolute positioning of the back button */
 }
 
+#back-button {
+  position: fixed; /* Fixes the button relative to the viewport */
+  top: 20px; /* Distance from the top of the viewport */
+  left: 20px; /* Distance from the left of the viewport */
+  z-index: 1000; /* Ensures it stays above other content */
+}
