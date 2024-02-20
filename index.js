@@ -35,15 +35,21 @@ submitRegisterButton.addEventListener('click', registerWithEmailAndPassword);
 // Existing event listeners for sign-in, registration, etc.
 
 const backButton = document.getElementById('back-button');
+backButton.style.display = 'none'; // Hide the "Back" button initially
+
 backButton.addEventListener('click', () => {
   document.getElementById('phi-chart-container').style.display = 'none';
   document.getElementById('app').style.display = 'block';
+  backButton.style.display = 'none';
+
 });
 
 const viewPhiButton = document.getElementById('view-phi-button');
 viewPhiButton.addEventListener('click', () => {
   document.getElementById('app').style.display = 'none';
   document.getElementById('phi-chart-container').style.display = 'block';
+  backButton.style.display = 'block'; // Ensure this line is here to show the button
+
   displayPhiValues(); // Make sure this function fetches and displays the graph
 });
 
