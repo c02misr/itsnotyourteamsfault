@@ -169,59 +169,57 @@ async function displayPhiValues() {
 function createChart(phiData) {
   console.log('createChart was called');
   const ctx = phiChartElement.getContext("2d");
-  
 
   if (phiChart) {
-    phiChart.destroy();
+      phiChart.destroy();
   }
 
   const labels = phiData.map((data) => data.timestamp);
   const dataPoints = phiData.map((data) => data.phi);
 
-  // Register the date-fns adapter
-  Chart.register(...registerables);
-
-
+  // In a non-modular environment, you don't need to manually register the components
+  // as they are already registered when you include Chart.js via a script tag
 
   phiChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Phi(t)',
-        data: dataPoints,
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 2,
-      }]
-    },
-    options: {
-      scales: {
-        x: {
-          type: 'time',
-          time: {
-            parser: 'date-fns', // <- Add this line to use the date-fns adapter
-            unit: 'day',
-            displayFormats: {
-              day: 'MMM d',
-            },
-            tooltipFormat: 'MMM d, yyyy',
-            minUnit: 'day',
-          },
-          ticks: {
-            source: 'data',
-          },
-        },
-        y: {
-          min: -20,
-          max: 20,
-        }
+      type: 'line',
+      data: {
+          labels: labels,
+          datasets: [{
+              label: 'Phi(t)',
+              data: dataPoints,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 2,
+          }]
+      },
+      options: {
+          scales: {
+              x: {
+                  type: 'time',
+                  time: {
+                      parser: 'date-fns', // <- Make sure you have included the date-fns adapter correctly
+                      unit: 'day',
+                      displayFormats: {
+                          day: 'MMM d',
+                      },
+                      tooltipFormat: 'MMM d, yyyy',
+                      minUnit: 'day',
+                  },
+                  ticks: {
+                      source: 'data',
+                  },
+              },
+              y: {
+                  min: -20,
+                  max: 20,
+              }
+          }
       }
-    }
   });
   console.log('Chart instance created', phiChart);
   phiChartElement.style.display = "block";
 }
+
 
 }
 )
