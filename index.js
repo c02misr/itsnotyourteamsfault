@@ -32,6 +32,22 @@ registerButton.addEventListener('click', () => {
 });
 submitRegisterButton.addEventListener('click', registerWithEmailAndPassword);
 
+// Existing event listeners for sign-in, registration, etc.
+
+const backButton = document.getElementById('back-button');
+backButton.addEventListener('click', () => {
+  document.getElementById('phi-chart-container').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+});
+
+const viewPhiButton = document.getElementById('view-phi-button');
+viewPhiButton.addEventListener('click', () => {
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('phi-chart-container').style.display = 'block';
+  displayPhiValues(); // Make sure this function fetches and displays the graph
+});
+
+
 // Register with email and password function
 function registerWithEmailAndPassword() {
   const email = registerEmailInput.value;
@@ -127,7 +143,6 @@ async function savePhiValue() {
     alert('Error saving Phi value');
   }
 }
-const viewPhiButton = document.getElementById('view-phi-button');
 const phiChartElement = document.getElementById('phi-chart');
 
 // Attach a click event listener to the view button
