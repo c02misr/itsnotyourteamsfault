@@ -52,4 +52,12 @@ button:hover {
   display: flex;
 }
 
+#phi-chart-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: none;
+  position: relative;
+}
+
 /*# sourceMappingURL=index.1303bb05.css.map */

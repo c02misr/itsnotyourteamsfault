@@ -51,3 +51,12 @@ button:hover {
   display: flex;
   gap: 10px;
 }
+
+#phi-chart-container {
+  width: 100%; /* Full width to give more space for the graph */
+  max-width: 800px; /* Consistency with the body's max-width */
+  margin: 0 auto; /* Center it */
+  display: none; /* Hidden initially */
+  position: relative; /* Needed for absolute positioning of the back button */
+}
+
