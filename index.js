@@ -211,6 +211,13 @@ function createChart(phiData) {
               backgroundColor: 'rgba(75, 192, 192, 0.2)',
               borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 2,
+              borderDash: [5, 5], // Optional: creates a dashed line
+              pointRadius: 5, // Larger point radius for emphasis
+              pointHoverRadius: 8, // Larger radius on hover
+              pointBackgroundColor: 'rgba(75, 192, 192, 1)', // Point color
+              pointBorderColor: "#fff", // Border color of points
+              pointBorderWidth: 2, // Width of the border around each point
+              showLine: true, // Set this to false if you want to completely hide the li
           }]
       },
       options: {

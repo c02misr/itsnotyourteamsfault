@@ -164,7 +164,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
                         data: dataPoints,
                         backgroundColor: "rgba(75, 192, 192, 0.2)",
                         borderColor: "rgba(75, 192, 192, 1)",
-                        borderWidth: 2
+                        borderWidth: 2,
+                        borderDash: [
+                            5,
+                            5
+                        ],
+                        pointRadius: 5,
+                        pointHoverRadius: 8,
+                        pointBackgroundColor: "rgba(75, 192, 192, 1)",
+                        pointBorderColor: "#fff",
+                        pointBorderWidth: 2,
+                        showLine: true
                     }
                 ]
             },
