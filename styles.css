@@ -53,12 +53,21 @@ button:hover {
 }
 
 #phi-chart-container {
-  width: 100%; /* Full width to give more space for the graph */
+  width: 100%; /* Full width for the graph */
   max-width: 800px; /* Consistency with the body's max-width */
-  margin: 0 auto; /* Center it */
+  margin: 20px auto 0; /* Adjust top margin to push it down slightly */
   display: none; /* Hidden initially */
-  position: relative; /* Needed for absolute positioning of the back button */
+  position: relative; /* For absolute positioning of contained elements */
+  padding-top: 40px; /* Creates space at the top inside the container */
 }
+
+#average-phi-container {
+  margin-top: -70px; /* Negative margin to move it up, adjust as needed */
+  text-align: center;
+  width: 100%;
+}
+
+
 
 #back-button {
   position: fixed; /* Fixes the button relative to the viewport */

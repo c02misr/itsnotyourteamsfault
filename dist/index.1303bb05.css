@@ -55,9 +55,16 @@ button:hover {
 #phi-chart-container {
   width: 100%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto 0;
+  padding-top: 40px;
   display: none;
   position: relative;
+}
+
+#average-phi-container {
+  text-align: center;
+  width: 100%;
+  margin-top: -70px;
 }
 
 #back-button {

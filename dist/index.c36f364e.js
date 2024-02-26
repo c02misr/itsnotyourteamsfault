@@ -53,6 +53,31 @@ document.addEventListener("DOMContentLoaded", ()=>{
             console.error("Error registering:", error);
         });
     }
+    async function fetchAndDisplayAveragePhi() {
+        const user = firebase.auth().currentUser;
+        if (!user) {
+            console.log("User not signed in");
+            return;
+        }
+        try {
+            const phiValuesSnapshot = await firestore.collection("phi-values").where("uid", "==", user.uid).get();
+            let totalPhi = 0;
+            let count = 0;
+            phiValuesSnapshot.forEach((doc)=>{
+                const phiValue = parseFloat(doc.data().phi); // Convert phi value to a number
+                if (!isNaN(phiValue)) {
+                    totalPhi += phiValue;
+                    count++;
+                } else console.error("Invalid phi value encountered:", doc.data().phi);
+            });
+            // Debugging statement to verify totalPhi and count
+            console.log(`Total Phi: ${totalPhi}, Count: ${count}`);
+            const averagePhi = count > 0 ? (totalPhi / count).toFixed(2) : "No data";
+            document.getElementById("average-phi").innerText = `Your average Phi is ${averagePhi}`;
+        } catch (error) {
+            console.error("Error fetching Phi values:", error);
+        }
+    }
     // Select the form elements
     const signInButton = document.getElementById("sign-in-button");
     const signInForm = document.getElementById("sign-in-form");
@@ -88,6 +113,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             console.log("User is signed in:", user);
             signInButton.style.display = "none";
             phiForm.style.display = "block";
+            fetchAndDisplayAveragePhi();
         } else {
             // User is signed out
             console.log("User is signed out");
