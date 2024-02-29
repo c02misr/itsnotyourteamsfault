@@ -188,40 +188,40 @@ async function savePhiValue() {
 }
 const phiChartElement = document.getElementById('phi-chart');
 
-// Attach a click event listener to the view button
-viewPhiButton.addEventListener('click', displayPhiValues);
 
 // Fetch and display the Phi values
-async function displayPhiValues() {
-  document.getElementById('phi-chart-container').style.display = 'block';
-
+async function displayPhiValues(days = 7) { // Default to last 7 days
   const user = firebase.auth().currentUser;
-
   if (!user) {
-    alert('Please sign in to view Phi values');
+    console.log('User not signed in');
     return;
   }
 
-  try {
-    const phiValuesSnapshot = await firestore.collection('phi-values')
-      .where('uid', '==', user.uid)
-      .orderBy('timestamp', 'asc')
-      .get();
-      
-    const phiData = phiValuesSnapshot.docs.map(doc => {
-      const data = doc.data();
-      return {
-        phi: data.phi,
-        timestamp: data.timestamp.toDate(),
-      };
-    });
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() - days); // Calculate the start date based on the selected timescale
 
-    createChart(phiData);
+  let query = firestore.collection('phi-values')
+    .where('uid', '==', user.uid)
+    .orderBy('timestamp', 'asc');
+
+  // Adjust the query based on the timescale
+  if (days > 0) { // For a specific timescale
+    query = query.where('timestamp', '>=', startDate);
+  } // If days = 0, it means "All Time", so no additional query constraint is needed
+
+  try {
+    const phiValuesSnapshot = await query.get();
+    const phiData = phiValuesSnapshot.docs.map(doc => ({
+      phi: doc.data().phi,
+      timestamp: doc.data().timestamp.toDate(),
+    }));
+
+    createChart(phiData); // Call the function to create/update the chart with the fetched data
   } catch (error) {
     console.error('Error fetching Phi values:', error);
-    alert('Error fetching Phi values');
   }
 }
+
 
 
 function createChart(phiData) {
@@ -286,5 +286,9 @@ function createChart(phiData) {
 }
 
 
+document.getElementById('apply-time-frame').addEventListener('click', () => {
+  const selectedTimeFrame = parseInt(document.getElementById('time-frame-select').value, 10);
+  displayPhiValues(selectedTimeFrame);
+});
 }
 )
