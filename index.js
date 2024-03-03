@@ -267,7 +267,7 @@ function createChart(phiData) {
                       displayFormats: {
                           day: 'MMM d',
                       },
-                      tooltipFormat: 'MMM d, yyyy',
+                      tooltipFormat: 'MMM d, yyyy HH:mm', // Updated to include time
                       minUnit: 'day',
                   },
                   ticks: {

@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                             displayFormats: {
                                 day: "MMM d"
                             },
-                            tooltipFormat: "MMM d, yyyy",
+                            tooltipFormat: "MMM d, yyyy HH:mm",
                             minUnit: "day"
                         },
                         ticks: {
