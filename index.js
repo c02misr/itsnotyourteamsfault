@@ -5,12 +5,12 @@ let phiChart;
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCaewNUV7i50S4DYMVgzBLVg2Rc8dJpmLk",
-  authDomain: "phi-of-t.firebaseapp.com",
-  projectId: "phi-of-t",
-  storageBucket: "phi-of-t.appspot.com",
-  messagingSenderId: "134964093529",
-  appId: "1:134964093529:web:9537a8951d77d4ceac8748"
+  apiKey: "AIzaSyANNuJlkFPlcrtH8FJ4MXWepLPehboENMY",
+    authDomain: "itsnotyourteamsfault.firebaseapp.com",
+    projectId: "itsnotyourteamsfault",
+    storageBucket: "itsnotyourteamsfault.appspot.com",
+    messagingSenderId: "597728884174",
+    appId: "1:597728884174:web:7c9a47d1a051339b4ca79f"
 };
 
 // Initialize Firebase
