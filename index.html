@@ -1,47 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phi Tool</title>
-  <link rel="stylesheet" href="styles.css">
-  
-  <!-- Firebase JS SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No excuses</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Firebase JS SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
 
-  <!-- Chart.js and its adapter -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-  
-  <script src="index.js" defer></script>
+    <!-- Chart.js and its adapter -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    
+    <script src="index.js" defer></script>
 </head>
 <body>
-  <div id="app">
-    <div id="register-form" style="display: none;">
-      <label for="register-email">Email:</label>
-      <input type="email" id="register-email" name="register-email" required>
-      <label for="register-password">Password:</label>
-      <input type="password" id="register-password" name="register-password" required>
-      <button id="submit-register">Register</button>
+    <div id="app-container">
+        <header class="top-right">
+            <div class="auth-buttons">
+                <button id="sign-in-button">Sign In</button>
+                <button id="register-button">Register</button>
+            </div>
+        </header>
+        
+        <form id="register-form" style="display: none;">
+            <label for="register-email">Email:</label>
+            <input type="email" id="register-email" name="register-email" required>
+            <label for="register-password">Password:</label>
+            <input type="password" id="register-password" name="register-password" required>
+            <button id="submit-register">Register</button>
+        </form>
+        
+        <form id="sign-in-form" style="display: none;">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button id="submit-sign-in">Submit</button>
+        </form>
+
+        <section id="game-settings" style="display: flex; justify-content: space-between;">
+            <div id="pre-game" style="width: 48%;">
+                <h3>Pre-Game Settings</h3>
+                <div>
+                    <label for="exercised">Exercised (-20 to 20):</label>
+                    <input type="number" id="exercised" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="meditated">Meditated Today:</label>
+                    <input type="checkbox" id="meditated">
+                </div>
+                <div>
+                    <label for="read">Read (-20 to 20):</label>
+                    <input type="number" id="read" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="write">Write (-20 to 20):</label>
+                    <input type="number" id="write" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="sleep">Sleep Night Before (-20 to 20):</label>
+                    <input type="number" id="sleep" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="diet">Diet Rating (Health) (-20 to 20):</label>
+                    <input type="number" id="diet" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="caffeination">Caffeination Level (-20 to 20):</label>
+                    <input type="number" id="caffeination" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="time-since-meal">Time Since Last Meal (hours):</label>
+                    <input type="number" id="time-since-meal" min="0" step="0.1">
+                </div>
+                <div>
+                    <label for="nerve-before">Nerve Before (-20 to 20):</label>
+                    <input type="number" id="nerve-before" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="grass-level">Grass Level (Socialized) (-20 to 20):</label>
+                    <input type="number" id="grass-level" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="brain-fog-level">Brain Fog Level (-20 to 20):</label>
+                    <input type="number" id="brain-fog-level" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="jade-level">Jade Level (-20 to 20):</label>
+                    <input type="number" id="jade-level" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="build-level">Build Level (-20 to 20):</label>
+                    <input type="number" id="build-level" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="ranked">Ranked:</label>
+                    <input type="checkbox" id="ranked">
+                </div>
+                <div>
+                    <label for="confidence-level">Confidence (-20 to 20):</label>
+                    <input type="number" id="confidence-level" min="-20" max="20">
+                </div>
+            </div>
+
+            <div id="post-game" style="width: 48%;">
+                <h3>Post-Game Analysis</h3>
+                <div>
+                    <label for="performance">How did you play (-20 to 20):</label>
+                    <input type="number" id="performance" min="-20" max="20">
+                </div>
+                <div>
+                    <label for="win-loss">Win or Loss:</label>
+                    <input type="checkbox" id="win-loss" title="Check if win">
+                </div>
+                <div>
+                    <label for="game-notes">What were you playing for, and what happened:</label>
+                    <textarea id="game-notes" rows="4" cols="50"></textarea>
+                </div>
+            </div>
+
+            <!-- Button to Save Data -->
+            <div style="clear: both; padding-top: 20px; width: 100%; text-align: center;">
+                <button id="save-game-data">Save Game Data</button>
+            </div>
+        </section>
     </div>
-    
-    <div class="top-right">
-      <div class="auth-buttons">
-        <button id="sign-in-button">Sign In</button>
-        <button id="register-button">Register</button>
-      </div>
-    </div>
-    
-    <div id="sign-in-form" style="display: none;">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
-      <button id="submit-sign-in">Submit</button>
-    </div>
-    
+</body>
+</html>
+
+  
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--
     <div class="description">
       <p>This program will input and record your Phi after a match.</p>
       <p>Phi is a measure of how well you believed you played in the match.</p>
@@ -67,7 +175,7 @@
   
   <div id="phi-chart-container" style="display: none;">
     <div id="average-phi-container" style="text-align: center; margin-top: 0px;"> <!-- Adjust the margin-top as needed -->
-      <span id="average-phi">Your average Phi is: Loading...</span>
+     <!-- <span id="average-phi">Your average Phi is: Loading...</span>
     <canvas id="phi-chart"></canvas>
 
     <div style="text-align: center; margin-top: 20px;">
@@ -83,6 +191,11 @@
   </div>
 
   <button id="back-button" style="position: fixed; top: 20px; left: 20px;">Back</button>
-</body>
+</body> 
   
-</html>
+
+ <-- Script for loading Firebase and other functionalities 
+    <script src="firebase-init.js"></script>
+  </body>
+
+  </html>

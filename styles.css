@@ -1,77 +1,136 @@
+/* General Body Styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: black;
-  color: white;
-  max-width: 800px;
-  margin: 0 auto;
+  font-family: 'Segoe UI', Arial, sans-serif; /* Improved font for better readability */
+  background-color: #f4f4f4; /* Lighter background for a modern look */
+  color: #333; /* Darker text for better contrast and readability */
+  margin: 0;
   padding: 20px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
 
-.description {
-  text-align: center;
-  margin-bottom: 20px;
+/* Container for the entire app */
+#app-container {
+  width: 90%;
+  max-width: 1200px;
+  background: white; /* Light background for the main container */
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Soft shadow for 3D effect */
+  border-radius: 8px; /* Rounded corners */
+  box-sizing: border-box;
 }
 
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-button {
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  border-radius: 4px;
-}
-
-button:hover {
-  background-color: #0069d9;
-}
-
+/* Top-right section for authentication buttons */
 .top-right {
   position: absolute;
   top: 10px;
   right: 10px;
 }
 
+/* Authentication buttons styling */
 .auth-buttons {
   display: flex;
   gap: 10px;
 }
 
-#phi-chart-container {
-  width: 100%; /* Full width for the graph */
-  max-width: 800px; /* Consistency with the body's max-width */
-  margin: 20px auto 0; /* Adjust top margin to push it down slightly */
-  display: none; /* Hidden initially */
-  position: relative; /* For absolute positioning of contained elements */
-  padding-top: 40px; /* Creates space at the top inside the container */
+/* Form display adjustments */
+div[id$="-form"] {
+  background: #333;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: none; /* Hidden by default */
 }
 
-#average-phi-container {
-  margin-top: -70px; /* Negative margin to move it up, adjust as needed */
-  text-align: center;
+/* Input styling */
+input[type="number"], input[type="email"], input[type="password"], textarea {
   width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff; /* White background for inputs */
+  color: #333; /* Dark text for inputs */
 }
 
+input[type="checkbox"] {
+  margin-top: 5px;
+  appearance: none;
+  background-color: #fff; /* Consistent with other inputs */
+  border: 2px solid #007bff; /* Blue border */
+  width: 20px; /* Larger for better interaction */
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-color: #0056b3; /* Darker border when checked */
+}
 
+/* Button Styling */
+button {
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+}
 
-#back-button {
-  position: fixed; /* Fixes the button relative to the viewport */
-  top: 20px; /* Distance from the top of the viewport */
-  left: 20px; /* Distance from the left of the viewport */
-  z-index: 1000; /* Ensures it stays above other content */
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+/* Layout for game settings section */
+#game-settings {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+#pre-game, #post-game {
+  flex: 1 1 48%; /* Responsive settings sections */
+  min-width: 300px;
+  padding: 10px;
+  background-color: #f8f8f8; /* Light grey background for sectioning */
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #game-settings {
+      flex-direction: column;
+  }
+
+  #pre-game, #post-game {
+      flex-basis: 100%;
+  }
+
+  .top-right {
+      right: 10px;
+      top: auto;
+      bottom: 10px;
+  }
+}
+
+/* Miscellaneous */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+input[type="number"], input[type="email"], input[type="password"], textarea, button:focus {
+  outline: none;
+  border-color: #009bff; /* Highlight color on focus */
 }
